@@ -38,9 +38,8 @@ public class Screen extends Bitmap {
     	
 		Random r = new Random(100);
 		
-		for (int i=0; i < 10000; i++) {
-			viewport.projectCircle(r.nextInt(0), r.nextInt(50));
-			//viewport.projectPixel(r.nextDouble()*2-1, r.nextDouble()*2-1);
+		for (int i=0; i < 100; i++) {
+			viewport.projectPixel(r.nextDouble()*2-1, r.nextDouble()*2-1);
 		}
     	
     	draw(viewport, 0, 0);
