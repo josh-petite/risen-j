@@ -16,7 +16,7 @@ public class Bitmap3d extends Bitmap {
 		double yCam = 0;
 		double zCam = 0;
 		
-		double rot = game.time/250.0;
+		double rot = 0;
 		double rCos = Math.cos(rot);
 		double rSin = Math.sin(rot);
 		
@@ -39,12 +39,40 @@ public class Bitmap3d extends Bitmap {
 				int xPixel = (int) xx;
 				int yPixel = (int) yy;
 				
-				if (xx < 0) xPixel--;
-				if (yy < 0) yPixel--;
+				if (xx < 0) 
+					xPixel--;
+				if (yy < 0) 
+					yPixel--;
 								
 				zBuffer[x+y*width] = zd;
 				pixels[x+y*width] = Art.floors.pixels[(xPixel & 15) + (yPixel & 15) * 256];
 			}
+		}
+	}
+	
+	public void projectCircle(int x, int y) {
+		int length = 50;
+		float angle = 0;
+		float angleStep = (float) 0.1;
+		int xx, yy;
+		
+		while (angle < 2 * Math.PI) {
+			xx = (int) (length * Math.cos(angle));
+			yy = (int) (length * Math.sin(angle));
+			
+			projectPixel(xx + x, yy + y);
+			angle += angleStep;
+		}
+	}
+	
+	public void projectPixel(double x, double y) {
+		double z = 3;
+		
+		int xPixel = (int)(x / z * height + width/2);
+		int yPixel = (int)(y / z * height + height/2);
+		
+		if (xPixel>=0 && yPixel >=0 && xPixel < width && yPixel < height) {
+			pixels[xPixel+yPixel*width] = 0xff00ff;
 		}
 	}
 	
