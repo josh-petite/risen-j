@@ -36,13 +36,7 @@ public class Screen extends Bitmap {
     	viewport.render(game);
     	viewport.renderEffects();
     	
-		Random r = new Random(100);
-		
-		for (int i=0; i < 100; i++) {
-			viewport.projectPixel(r.nextDouble()*2-1, r.nextDouble()*2-1);
-		}
-    	
-    	draw(viewport, 0, 0);
+		draw(viewport, 0, 0);
     	//draw(gamePanel, 0, height - panelHeight);
     }
 
